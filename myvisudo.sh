@@ -6,7 +6,7 @@
 #purpose:		alternative method to sudo visudo.
 #			It should not be used per se.
 #			It could serve as basis for other script, notably the modify_etc_sudoers function
-#usage:			./myvisudo.sh <script_name>
+#usage:			./myvisudo.sh
 
 #exit codes:
 #	0	successful exit
@@ -29,7 +29,7 @@ Normally, visudo prevents you to write anything stupid, but one 🐦 in the hand
 
 You'll be prompted to enter the command you want to append the sudoers.
 
-This script will also add a commented timestamp 🕓 before any input.
+This script will also add a commented (#) timestamp 🕓 before any input.
 $(tput sgr 0)
 EXAMPLES:
 Enter input: Defaults\teditor="/snap/bin/nvim"
@@ -73,6 +73,18 @@ user_input() {
 	read -erp "Enter input: " input
 }
 
+test_input() {
+	verifile=/tmp/verifile.txt
+	echo -e "$input" >$verifile
+	status=$(sudo visudo -c $verifile | awk '{print tolower($NF)}')
+	if [[ $status != "ok" ]]; then
+		echo "Bad input!"
+		exit
+	else
+		echo -e "\nStatus 👍"
+	fi
+}
+
 modify_etc_sudoers() {
 	ts=$(date "+%Y%m%d %H:%M:%S")
 	echo -e "\n# $ts" | (sudo EDITOR="tee -a" visudo) 2>>$errLog
@@ -84,7 +96,7 @@ outro() {
 }
 
 remove_log() {
-	rm $errLog
+	rm $errLog 2>/dev/null
 }
 
 errLog=/tmp/errLog.log
@@ -93,7 +105,8 @@ main() {
 	usage $1
 	intro
 	user_input
-	modify_etc_sudoers
+	test_input
+	# modify_etc_sudoers
 	outro
 	remove_log
 }
