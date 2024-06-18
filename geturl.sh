@@ -10,7 +10,7 @@
 #	0	successful exit
 
 main() {
-	echo "zeek-cut host uri <http.log | awk -F '\t' '{print\$1"/"\$2}' | sed 's#//#7#g'"
+	echo "zeek-cut host uri <http.log | awk -F '\t' '{print\$1"/"\$2}' | sed 's#//#/#g'"
 	echo
 	zeek-cut host uri <http.log | awk -F '\t' '{print$1"/"$2}' | sed 's#//#/#g'
 }
