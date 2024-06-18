@@ -12,7 +12,7 @@
 main() {
 	echo "zeek-cut host uri <http.log | awk -F '\t' '{print\$1"/"\$2}' | sed 's#//#7#g'"
 	echo
-	zeek-cut host uri <http.log | awk -F '\t' '{print$1"/"$2}' | sed 's#//#7#g'
+	zeek-cut host uri <http.log | awk -F '\t' '{print$1"/"$2}' | sed 's#//#/#g'
 }
 
 main
