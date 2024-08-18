@@ -48,7 +48,7 @@ select_environment() {
 					\r>>> conda deactivate && conda activate $env$(tput sgr 0)\n
 					\r$(tput bold)ctrl+shift+v to paste into terminal.$(tput sgr 0)\n"""
 				# paste conda command to kitty clipboard
-				echo "conda deactivate && conda activate $env" | kitty +kitten clipboard
+				echo "conda deactivate && conda activate $env" | kitty +kitten clipboard /dev/stdin
 				exit 2
 
 			# base environment in use
@@ -57,7 +57,7 @@ select_environment() {
 				\r>>> conda activate $env$(tput sgr 0)\n
 				\r$(tput bold)ctrl+shift+v to paste into terminal.$(tput sgr 0)\n"""
 				# paste conda command to kitty clipboard
-				echo "conda activate $env" | kitty +kitten clipboard
+				echo "conda activate $env" | kitty +kitten clipboard /dev/stdin
 				exit 2
 			fi
 
