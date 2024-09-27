@@ -16,6 +16,8 @@ cat <<'eof' >$output
 g4mLogAnalyser.sh launches a bunch of commands to find sensitive data in g4m logfiles.
 Hereafter, the commands appear in green and corresponding answers, if any, in white.
 
+Note that in the commands (green) the logfile will always be <log.txt>. The real name may differ though.
+
 eof
 
 cat <<'eof' >>$output
@@ -108,6 +110,9 @@ http://123.456.789.123/whatelse
 1234567894112545
 
 Note that imei numbers may also start with numbers other than 3.
+
+Swiss regional indicators:
+https://wiki.epfl.ch/voip-at-home/indicatifs-regions-suisse
 eof
 
 cat $output
