@@ -44,20 +44,24 @@ select_environment() {
 		if [[ $REPLY -le $list_length && $REPLY != '0' ]]; then
 			# environment already in use
 			if [[ $status != "base" ]]; then
-				echo -e """\nNext command copied to clipboard: $(tput setaf 2)
-					\r>>> conda deactivate && conda activate $env$(tput sgr 0)\n
-					\r$(tput bold)ctrl+shift+v to paste into terminal.$(tput sgr 0)\n"""
+				# echo -e """\nNext command copied to clipboard: $(tput setaf 2)
+				# 	\r>>> conda deactivate && conda activate $env$(tput sgr 0)\n
+				# 	\r$(tput bold)ctrl+shift+v to paste into terminal.$(tput sgr 0)\n"""
+
 				# paste conda command to kitty clipboard
-				echo "conda deactivate && conda activate $env" | kitty +kitten clipboard /dev/stdin
+				# echo "conda deactivate && conda activate $env" | kitty +kitten clipboard /dev/stdin
+				kitty @ send-text "conda deactivate && conda activate $env\n"
 				exit 2
 
 			# base environment in use
 			else
-				echo -e """\nNext command copied to clipboard: $(tput setaf 2)
-				\r>>> conda activate $env$(tput sgr 0)\n
-				\r$(tput bold)ctrl+shift+v to paste into terminal.$(tput sgr 0)\n"""
+				# echo -e """\nNext command copied to clipboard: $(tput setaf 2)
+				# \r>>> conda activate $env$(tput sgr 0)\n
+				# \r$(tput bold)ctrl+shift+v to paste into terminal.$(tput sgr 0)\n"""
+
 				# paste conda command to kitty clipboard
-				echo "conda activate $env" | kitty +kitten clipboard /dev/stdin
+				# echo "conda activate $env" | kitty +kitten clipboard /dev/stdin
+				kitty @ send-text "conda activate ${env}\n"
 				exit 2
 			fi
 
