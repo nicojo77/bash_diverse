@@ -4,7 +4,7 @@
 #date:			19.03.2024
 #modification:	19.03.2024
 #purpose:
-#usage:			./compareNpcaps.sh from the folder you want to check the get_numbers_of_pcaps.
+#usage:			./compareNpcaps.sh from the folder you want to check the numbers of pcaps.
 
 get_numbers_of_pcaps() {
 	awk 'BEGIN{printf "%s%55s\n", "PRODUCTS:", "N pcaps:"}'
