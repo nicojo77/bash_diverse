@@ -29,7 +29,8 @@ project="mellon"
 cda="conda activate capcap310"
 
 # Change directory and load project environment manually.
-kitty @ set-window-title ${project}_main
+kitty @ set-tab-title ${project}         # Tab title - appears on upper left-hand side corner.
+kitty @ set-window-title ${project}_main # Window tiltle - appears in top middle.
 cd /home/anon/Documents/git/pythonScripts/${project}/ || exit
 ${cda}
 
@@ -41,12 +42,11 @@ else
 fi
 
 for ((i = 1; i <= n; i++)); do
-	kitty @ launch --cwd /home/anon/Desktop/cases/ --title "${project}_win$i"
+	kitty @ launch --cwd /home/anon/Desktop/TESTS/ --title "${project}_win$i"
 	kitty @ send-text --match title:"${project}_win$i" "$cda\n"
 	kitty @ send-text --match title:"${project}_win$i" "clear\n"
 	# kitty @ set-window-logo --match title:"${project}_win$i" none
 done
-
 # Put focus on main window.
 kitty @ focus-window
 kitty @ send-text --match title:$project\_main "clear\n"
